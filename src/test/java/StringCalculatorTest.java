@@ -18,4 +18,14 @@ public class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertEquals(0, calculator.add(""));
     }
+
+    /**
+     * Test case: input is a single number.
+     * Expected behavior: should return the number itself.
+     */
+    @Test
+    public void testAddWithSingleNumber() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(1, calculator.add("1"));
+    }
 }
