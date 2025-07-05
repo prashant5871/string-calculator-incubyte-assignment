@@ -24,6 +24,11 @@ public class StringCalculator {
      * @return the sum of the numbers
      */
     public int add(String numbers) {
-        return 0; // Default return for now (TDD phase)
+        if(numbers == null || numbers.isEmpty())
+        {
+            return 0;
+        }
+
+        return Integer.parseInt(numbers);
     }
 }
