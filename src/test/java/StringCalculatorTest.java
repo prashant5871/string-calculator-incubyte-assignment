@@ -28,4 +28,14 @@ public class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertEquals(1, calculator.add("1"));
     }
+
+    /**
+     * Test case: input contains two numbers separated by a comma.
+     * Expected behavior: should return their sum.
+     */
+    @Test
+    public void testAddWithTwoNumbers() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(3, calculator.add("1,2"));
+    }
 }
