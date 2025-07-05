@@ -14,6 +14,15 @@ It is implemented in **Java using Gradle**, following the principles of **Test-D
 To understand the development process, please review all the commits. Each step in the implementation is clearly reflected through meaningful commit messages.
 
 ---
+---
+
+## ✅ All Tests Passing
+
+Below is a screenshot of all test cases running successfully using JUnit in IntelliJ IDEA:
+
+![Test Results](assets/test-pass.png)
+
+---
 
 ## 🗂️ Project Structure
 
@@ -94,6 +103,7 @@ tasks.test {
 | Multi-length delimiters         | Format: `//[***][%%%]\n1***2%%%3`                            |
 | Negative number detection       | Throws exception with list of all negatives                 |
 | Numbers >1000 are ignored       | e.g., `2 + 1001 = 2`                                         |
+| 🔁 Track Add() call count        | `GetCalledCount()` returns how many times `add()` was called |
 
 ---
 
