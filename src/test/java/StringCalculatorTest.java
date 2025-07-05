@@ -101,5 +101,15 @@ public class StringCalculatorTest {
         assertEquals(3, calculator.add("1234\n1,2"));
     }
 
+    /**
+     * Test case: input uses a custom delimiter of any length defined in [ ].
+     * Expected behavior: should use the entire custom delimiter to split values.
+     */
+    @Test
+    public void testAddWithLongDelimiter() {
+        assertEquals(6, calculator.add("//[***]\n1***2***3"));
+        assertEquals(60, calculator.add("//[##]\n10##20##30"));
+        assertEquals(3, calculator.add("//[!!]\n1!!1001!!2"));
+    }
 
 }
