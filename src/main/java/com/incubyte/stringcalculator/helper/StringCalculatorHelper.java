@@ -76,7 +76,7 @@ public class StringCalculatorHelper {
      */
     private static int compute(String[] tokens) {
         int sum = 0;
-        List<Integer> negatives = new ArrayList<>();
+        List<Integer> negatives = new ArrayList<>(); //list to store negative numbers
 
         for (String token : tokens) {
             if (!token.isEmpty()) {
