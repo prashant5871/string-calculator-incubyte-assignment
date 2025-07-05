@@ -57,4 +57,13 @@ public class StringCalculatorTest {
         assertEquals(10, calculator.add("1,2,3,4"));
     }
 
+    /**
+     * Test case: input contains numbers separated by commas and new lines.
+     * Expected behavior: should return the correct sum.
+     */
+    @Test
+    public void testAddWithNewlineDelimiter() {
+        assertEquals(6, calculator.add("1\n2,3"));
+    }
+
 }

@@ -28,16 +28,13 @@ public class StringCalculator {
             return 0;
         }
 
-        if (numbers.contains(",")) {
-            String[] numberArray = numbers.split(",");
-            int sum = 0;
-            for (String number : numberArray) {
-                sum += Integer.parseInt(number.trim());
-            }
-            return sum;
+        String[] numberArray = numbers.split(",");
+        int sum = 0;
+        for (String number : numberArray) {
+            sum += Integer.parseInt(number.trim());
         }
+        return sum;
 
-        return Integer.parseInt(numbers.trim());
     }
 
 }
