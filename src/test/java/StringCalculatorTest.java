@@ -90,5 +90,16 @@ public class StringCalculatorTest {
         assertEquals("negatives not allowed: -2, -5", thrown.getMessage());
     }
 
+    /**
+     * Test case: input contains numbers greater than 1000.
+     * Expected behavior: such numbers should be ignored in the sum.
+     */
+    @Test
+    public void testAddIgnoresNumbersGreaterThan1000() {
+        assertEquals(2, calculator.add("2,1001"));
+        assertEquals(1001, calculator.add("1000,1"));
+        assertEquals(3, calculator.add("1234\n1,2"));
+    }
+
 
 }
