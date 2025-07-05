@@ -66,4 +66,14 @@ public class StringCalculatorTest {
         assertEquals(6, calculator.add("1\n2,3"));
     }
 
+    /**
+     * Test case: input starts with custom delimiter definition using "//[delimiter]\n".
+     * Expected behavior: should use the custom delimiter to separate numbers.
+     */
+    @Test
+    public void testAddWithCustomDelimiter() {
+        assertEquals(3, calculator.add("//;\n1;2"));
+    }
+
+
 }
