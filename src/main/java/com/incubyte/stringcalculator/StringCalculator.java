@@ -1,6 +1,9 @@
 package com.incubyte.stringcalculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * The StringCalculator class provides a method to calculate the sum of numbers in a string.
@@ -30,7 +33,7 @@ public class StringCalculator {
             return 0;
         }
 
-        String delimiter = ",|\n"; // default delimiters: comma or newline
+        String delimiter = ",|\n";
 
         if (numbers.startsWith("//")) {
             int delimiterEndIndex = numbers.indexOf("\n");
@@ -40,10 +43,25 @@ public class StringCalculator {
 
         String[] tokens = numbers.split(delimiter);
         int sum = 0;
+        List<Integer> negatives = new ArrayList<>();
+
         for (String token : tokens) {
             if (!token.isEmpty()) {
-                sum += Integer.parseInt(token.trim());
+                int num = Integer.parseInt(token.trim());
+                if (num < 0) {
+                    negatives.add(num);
+                } else {
+                    sum += num;
+                }
             }
+        }
+
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "negatives not allowed: " + negatives.stream()
+                            .map(String::valueOf)
+                            .collect(Collectors.joining(", "))
+            );
         }
 
         return sum;
