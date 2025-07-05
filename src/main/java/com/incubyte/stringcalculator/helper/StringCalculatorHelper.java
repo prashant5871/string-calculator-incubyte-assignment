@@ -23,8 +23,13 @@ public class StringCalculatorHelper {
     }
 
     private static String extractCustomDelimiter(String def) {
-        return Pattern.quote(def.trim());
+        if (def.startsWith("[") && def.endsWith("]")) {
+            return Pattern.quote(def.substring(1, def.length() - 1));
+        } else {
+            return Pattern.quote(def);
+        }
     }
+
 
     private static int compute(String[] tokens) {
         int sum = 0;
