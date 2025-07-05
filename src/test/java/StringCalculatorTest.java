@@ -47,4 +47,14 @@ public class StringCalculatorTest {
     public void testAddWithTwoNumbers() {
         assertEquals(3, calculator.add("1,2"));
     }
+
+    /**
+     * Test case: input contains multiple comma-separated numbers.
+     * Expected behavior: should return the sum of all numbers.
+     */
+    @Test
+    public void testAddWithMultipleNumbers() {
+        assertEquals(10, calculator.add("1,2,3,4"));
+    }
+
 }
