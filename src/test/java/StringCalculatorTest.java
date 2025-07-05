@@ -75,5 +75,20 @@ public class StringCalculatorTest {
         assertEquals(3, calculator.add("//;\n1;2"));
     }
 
+    /**
+     * Test case: input contains negative numbers.
+     * Expected behavior: should throw an exception listing all negatives.
+     */
+    @Test
+    public void testAddWithNegativeNumbers() {
+        IllegalArgumentException thrown =
+                org.junit.jupiter.api.Assertions.assertThrows(
+                        IllegalArgumentException.class,
+                        () -> calculator.add("1,-2,3,-5")
+                );
+
+        assertEquals("negatives not allowed: -2, -5", thrown.getMessage());
+    }
+
 
 }
