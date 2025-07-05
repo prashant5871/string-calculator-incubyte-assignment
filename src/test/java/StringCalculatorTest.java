@@ -123,5 +123,20 @@ public class StringCalculatorTest {
         assertEquals(110, calculator.add("//[;][!!][r9r]\n11r9r22!!33;44"));
     }
 
+    @Test
+    void testGetCalledCountInitiallyAndAfterAddCalls() {
+        StringCalculator calculator = new StringCalculator();
+
+        // Initially count should be 0
+        assertEquals(0, calculator.GetCalledCount());
+
+        // After 1 add call
+        calculator.add("1,2");
+        assertEquals(1, calculator.GetCalledCount());
+
+        // After another add call
+        calculator.add("3");
+        assertEquals(2, calculator.GetCalledCount());
+    }
 
 }

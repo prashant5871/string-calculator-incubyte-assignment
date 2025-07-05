@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * It follows the rules defined in the String Calculator kata assignment by Incubyte.
  */
 public class StringCalculator {
+    private int callCount = 0;
 
     /**
      * Adds numbers provided in the input string.
@@ -31,8 +32,17 @@ public class StringCalculator {
      * @return the sum of the numbers
      */
     public int add(String numbers) {
+        callCount++;
         return StringCalculatorHelper.calculateSum(numbers);
     }
 
+    /**
+     * Returns how many times the add() method has been called.
+     *
+     * @return the number of times add() was invoked
+     */
+    public int GetCalledCount() {
+        return callCount;
+    }
 
 }
