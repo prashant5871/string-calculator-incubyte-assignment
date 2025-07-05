@@ -1,4 +1,5 @@
 import com.incubyte.stringcalculator.StringCalculator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,13 +10,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class StringCalculatorTest {
 
+    private StringCalculator calculator;
+
+    /**
+     * This method runs before each test.
+     * It initializes a new instance of StringCalculator to ensure clean test state.
+     */
+    @BeforeEach
+    void setup() {
+        calculator = new StringCalculator();
+    }
+
     /**
      * Test case: input is an empty string.
      * Expected behavior: should return 0.
      */
     @Test
     public void testAddWithEmptyString() {
-        StringCalculator calculator = new StringCalculator();
         assertEquals(0, calculator.add(""));
     }
 
@@ -25,7 +36,6 @@ public class StringCalculatorTest {
      */
     @Test
     public void testAddWithSingleNumber() {
-        StringCalculator calculator = new StringCalculator();
         assertEquals(1, calculator.add("1"));
     }
 
@@ -35,7 +45,6 @@ public class StringCalculatorTest {
      */
     @Test
     public void testAddWithTwoNumbers() {
-        StringCalculator calculator = new StringCalculator();
         assertEquals(3, calculator.add("1,2"));
     }
 }
