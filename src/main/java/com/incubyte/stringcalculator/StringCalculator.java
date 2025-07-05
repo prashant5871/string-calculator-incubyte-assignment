@@ -24,11 +24,20 @@ public class StringCalculator {
      * @return the sum of the numbers
      */
     public int add(String numbers) {
-        if(numbers == null || numbers.isEmpty())
-        {
+        if (numbers == null || numbers.isEmpty()) {
             return 0;
         }
 
-        return Integer.parseInt(numbers);
+        if (numbers.contains(",")) {
+            String[] numberArray = numbers.split(",");
+            int sum = 0;
+            for (String number : numberArray) {
+                sum += Integer.parseInt(number.trim());
+            }
+            return sum;
+        }
+
+        return Integer.parseInt(numbers.trim());
     }
+
 }
