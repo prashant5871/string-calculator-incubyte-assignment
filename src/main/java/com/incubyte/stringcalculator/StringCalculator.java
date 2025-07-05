@@ -1,5 +1,7 @@
 package com.incubyte.stringcalculator;
 
+import com.incubyte.stringcalculator.helper.StringCalculatorHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -29,42 +31,7 @@ public class StringCalculator {
      * @return the sum of the numbers
      */
     public int add(String numbers) {
-        if (numbers == null || numbers.isEmpty()) {
-            return 0;
-        }
-
-        String delimiter = ",|\n";
-
-        if (numbers.startsWith("//")) {
-            int delimiterEndIndex = numbers.indexOf("\n");
-            delimiter = Pattern.quote(numbers.substring(2, delimiterEndIndex));
-            numbers = numbers.substring(delimiterEndIndex + 1);
-        }
-
-        String[] tokens = numbers.split(delimiter);
-        int sum = 0;
-        List<Integer> negatives = new ArrayList<>();
-
-        for (String token : tokens) {
-            if (!token.isEmpty()) {
-                int num = Integer.parseInt(token.trim());
-                if (num < 0) {
-                    negatives.add(num);
-                } else {
-                    sum += num;
-                }
-            }
-        }
-
-        if (!negatives.isEmpty()) {
-            throw new IllegalArgumentException(
-                    "negatives not allowed: " + negatives.stream()
-                            .map(String::valueOf)
-                            .collect(Collectors.joining(", "))
-            );
-        }
-
-        return sum;
+        return StringCalculatorHelper.calculateSum(numbers);
     }
 
 

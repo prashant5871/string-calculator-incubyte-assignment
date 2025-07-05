@@ -1,0 +1,52 @@
+package com.incubyte.stringcalculator.helper;
+
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+public class StringCalculatorHelper {
+
+    public static int calculateSum(String input) {
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
+
+        String delimiter = ",|\n";
+        if (input.startsWith("//")) {
+            int delimiterEndIndex = input.indexOf("\n");
+            delimiter = extractCustomDelimiter(input.substring(2, delimiterEndIndex));
+            input = input.substring(delimiterEndIndex + 1);
+        }
+
+        String[] tokens = input.split(delimiter);
+        return compute(tokens);
+    }
+
+    private static String extractCustomDelimiter(String def) {
+        return Pattern.quote(def.trim());
+    }
+
+    private static int compute(String[] tokens) {
+        int sum = 0;
+        List<Integer> negatives = new ArrayList<>();
+
+        for (String token : tokens) {
+            if (!token.isEmpty()) {
+                int num = Integer.parseInt(token.trim());
+                if (num < 0) {
+                    negatives.add(num);
+                } else {
+                    sum += num;
+                }
+            }
+        }
+
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("negatives not allowed: " +
+                    negatives.stream().map(String::valueOf).collect(Collectors.joining(", "))
+            );
+        }
+
+        return sum;
+    }
+}
