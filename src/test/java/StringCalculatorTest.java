@@ -112,4 +112,16 @@ public class StringCalculatorTest {
         assertEquals(3, calculator.add("//[!!]\n1!!1001!!2"));
     }
 
+    /**
+     * Test case: input defines multiple delimiters using //[d1][d2]... format.
+     * Expected: all delimiters are recognized and used correctly.
+     */
+    @Test
+    public void testAddWithMultipleDelimiters() {
+        assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
+        assertEquals(10, calculator.add("//[***][#][%]\n1***2#3%4"));
+        assertEquals(110, calculator.add("//[;][!!][r9r]\n11r9r22!!33;44"));
+    }
+
+
 }
