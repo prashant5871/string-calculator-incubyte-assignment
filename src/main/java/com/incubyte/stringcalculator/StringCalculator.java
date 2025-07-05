@@ -28,7 +28,10 @@ public class StringCalculator {
             return 0;
         }
 
-        String[] numberArray = numbers.split(",");
+        // Replace newlines with commas to handle both delimiters
+        String sanitized = numbers.replace("\n", ",");
+
+        String[] numberArray = sanitized.split(",");
         int sum = 0;
         for (String number : numberArray) {
             sum += Integer.parseInt(number.trim());
