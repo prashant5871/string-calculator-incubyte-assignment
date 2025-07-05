@@ -1,6 +1,7 @@
 package com.incubyte.stringcalculator.helper;
 
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -24,11 +25,17 @@ public class StringCalculatorHelper {
 
     private static String extractCustomDelimiter(String def) {
         if (def.startsWith("[") && def.endsWith("]")) {
-            return Pattern.quote(def.substring(1, def.length() - 1));
+            List<String> delimiters = new ArrayList<>();
+            Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(def);
+            while (matcher.find()) {
+                delimiters.add(Pattern.quote(matcher.group(1)));
+            }
+            return String.join("|", delimiters); // regex using OR (|) between delimiters
         } else {
             return Pattern.quote(def);
         }
     }
+
 
 
     private static int compute(String[] tokens) {
