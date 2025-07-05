@@ -1,5 +1,7 @@
 package com.incubyte.stringcalculator;
 
+import java.util.regex.Pattern;
+
 /**
  * The StringCalculator class provides a method to calculate the sum of numbers in a string.
  * It follows the rules defined in the String Calculator kata assignment by Incubyte.
@@ -28,16 +30,24 @@ public class StringCalculator {
             return 0;
         }
 
-        // Replace newlines with commas to handle both delimiters
-        String sanitized = numbers.replace("\n", ",");
+        String delimiter = ",|\n"; // default delimiters: comma or newline
 
-        String[] numberArray = sanitized.split(",");
-        int sum = 0;
-        for (String number : numberArray) {
-            sum += Integer.parseInt(number.trim());
+        if (numbers.startsWith("//")) {
+            int delimiterEndIndex = numbers.indexOf("\n");
+            delimiter = Pattern.quote(numbers.substring(2, delimiterEndIndex));
+            numbers = numbers.substring(delimiterEndIndex + 1);
         }
-        return sum;
 
+        String[] tokens = numbers.split(delimiter);
+        int sum = 0;
+        for (String token : tokens) {
+            if (!token.isEmpty()) {
+                sum += Integer.parseInt(token.trim());
+            }
+        }
+
+        return sum;
     }
+
 
 }
