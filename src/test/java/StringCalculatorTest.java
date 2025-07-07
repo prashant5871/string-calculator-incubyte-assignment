@@ -75,6 +75,12 @@ public class StringCalculatorTest {
         assertEquals(3, calculator.add("//;\n1;2"));
     }
 
+    @Test
+    public void testAddWithDelimeterAsStartAndMultiply()
+    {
+        assertEquals(6,calculator.add("//*\n2*3"));
+    }
+
     /**
      * Test case: input contains negative numbers.
      * Expected behavior: should throw an exception listing all negatives.

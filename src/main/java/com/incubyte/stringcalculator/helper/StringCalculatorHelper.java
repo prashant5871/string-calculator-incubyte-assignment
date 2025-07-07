@@ -42,7 +42,7 @@ public class StringCalculatorHelper {
         }
 
         String[] tokens = input.split(delimiter);
-        return compute(tokens);
+        return compute(tokens, delimiter);
     }
 
     /**
@@ -74,8 +74,10 @@ public class StringCalculatorHelper {
      * @return the sum of valid (non-negative and ≤1000) numbers
      * @throws IllegalArgumentException if any negative numbers are present
      */
-    private static int compute(String[] tokens) {
+    private static int compute(String[] tokens, String delimeter) {
         int sum = 0;
+        int mul = 1;
+        boolean isMultiplication = delimeter.equals("\\Q*\\E");
         List<Integer> negatives = new ArrayList<>(); //list to store negative numbers
 
         for (String token : tokens) {
@@ -84,7 +86,12 @@ public class StringCalculatorHelper {
                 if (num < 0) {
                     negatives.add(num);
                 } else if (num <= 1000) {
-                    sum += num;
+                    if (isMultiplication) {
+                        mul *= num;
+                    } else {
+                        sum += num;
+
+                    }
                 }
             }
         }
@@ -95,6 +102,6 @@ public class StringCalculatorHelper {
             );
         }
 
-        return sum;
+        return ((isMultiplication) ? mul : sum);
     }
 }
